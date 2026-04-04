@@ -152,17 +152,7 @@
         </div>
 
         <div class="apply-form-card">
-          <!--
-            SETUP INSTRUCTIONS:
-            1. Go to https://formspree.io and create a free account
-            2. Create a new form and copy your endpoint URL
-            3. Replace "YOUR_FORM_ID" below with your actual form ID
-               Example: action="https://formspree.io/f/xpwdqqnk"
-            That's it — submissions will go directly to your email.
-          -->
           <form
-            action="https://formspree.io/f/YOUR_FORM_ID"
-            method="POST"
             class="form-fields"
             id="applyForm"
           >
@@ -270,9 +260,6 @@
               >
             </div>
 
-            <!-- Hidden field to help Formspree route properly -->
-            <input type="hidden" name="_subject" value="New SDIT Fellowship Application">
-
             <div class="form-submit">
               <button type="submit" class="btn btn--gold">Submit Application →</button>
               <p class="form-submit-note">We read every application personally. You'll hear from us within 2–3 weeks. No automated responses.</p>
@@ -360,44 +347,44 @@
 
   <script src="main.js"></script>
   <script>
-    // AJAX form submission — stay on page, show success message
     const applyForm = document.getElementById('applyForm');
     if (applyForm) {
-      applyForm.addEventListener('submit', async function (e) {
+      applyForm.addEventListener('submit', function (e) {
         e.preventDefault();
-        const btn = this.querySelector('[type="submit"]');
-        const originalText = btn.textContent;
-        btn.textContent = 'Sending…';
-        btn.disabled = true;
 
-        try {
-          const res = await fetch(this.action, {
-            method: 'POST',
-            body: new FormData(this),
-            headers: { 'Accept': 'application/json' }
-          });
-          if (res.ok) {
-            this.closest('.apply-form-card').innerHTML = `
-              <div class="form-success">
-                <div class="form-success__icon">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="20 6 9 17 4 12"/>
-                  </svg>
-                </div>
-                <h3 class="form-success__title">Application received.</h3>
-                <p class="form-success__body">Thank you for applying. We'll read your application and be in touch within 2–3 weeks.<br>In the meantime, feel free to reach out at <a href="mailto:hello@sandiegotech.org">hello@sandiegotech.org</a>.</p>
-              </div>
-            `;
-          } else {
-            btn.textContent = originalText;
-            btn.disabled = false;
-            alert('Something went wrong. Please try again or email us directly at hello@sandiegotech.org.');
-          }
-        } catch (err) {
-          btn.textContent = originalText;
-          btn.disabled = false;
-          alert('Something went wrong. Please try again or email us directly at hello@sandiegotech.org.');
+        const name       = document.getElementById('name').value.trim();
+        const email      = document.getElementById('email').value.trim();
+        const location   = document.getElementById('location').value.trim();
+        const background = document.getElementById('background').value.trim();
+        const why        = document.getElementById('why').value.trim();
+        const build      = document.getElementById('build').value.trim();
+        const portfolio  = document.getElementById('portfolio').value.trim();
+
+        const subject = 'SDIT Fellowship Application — ' + name;
+
+        const bodyLines = [
+          'Name: ' + name,
+          'Email: ' + email,
+          'Location: ' + location,
+          '',
+          'About Me:',
+          background,
+          '',
+          'Why SDIT:',
+          why,
+          '',
+          'What I Want to Build / Explore / Contribute:',
+          build,
+        ];
+        if (portfolio) {
+          bodyLines.push('', 'Portfolio / Work Sample:', portfolio);
         }
+
+        const mailtoUrl = 'mailto:hello@sandiegotech.org'
+          + '?subject=' + encodeURIComponent(subject)
+          + '&body=' + encodeURIComponent(bodyLines.join('\n'));
+
+        window.location.href = mailtoUrl;
       });
     }
   </script>
