@@ -152,119 +152,46 @@
         </div>
 
         <div class="apply-form-card">
-          <form
-            class="form-fields"
-            id="applyForm"
-          >
-            <div class="form-row-2">
-              <div class="form-field">
-                <label class="form-label" for="name">
-                  Full Name <span class="form-required">*</span>
-                </label>
-                <input
-                  class="form-input"
-                  type="text"
-                  id="name"
-                  name="name"
-                  required
-                  autocomplete="name"
-                  placeholder="Your full name"
-                >
+          <div class="apply-email-template">
+            <div class="apply-email-template__to">
+              <span class="apply-email-template__label">Send to</span>
+              <a href="mailto:brandon@sandiegotech.org" class="apply-email-template__address">brandon@sandiegotech.org</a>
+            </div>
+            <div class="apply-email-template__questions">
+              <div class="apply-template-q">
+                <span class="apply-template-num">01</span>
+                <div>
+                  <p class="apply-template-q__title">Who are you?</p>
+                  <p class="apply-template-q__hint">Your background — personally, professionally, intellectually. Don't summarize a résumé. Tell us something true.</p>
+                </div>
               </div>
-              <div class="form-field">
-                <label class="form-label" for="email">
-                  Email <span class="form-required">*</span>
-                </label>
-                <input
-                  class="form-input"
-                  type="email"
-                  id="email"
-                  name="email"
-                  required
-                  autocomplete="email"
-                  placeholder="you@example.com"
-                >
+              <div class="apply-template-q">
+                <span class="apply-template-num">02</span>
+                <div>
+                  <p class="apply-template-q__title">Why SDIT?</p>
+                  <p class="apply-template-q__hint">What draws you here? What are you looking for that you haven't found elsewhere?</p>
+                </div>
+              </div>
+              <div class="apply-template-q">
+                <span class="apply-template-num">03</span>
+                <div>
+                  <p class="apply-template-q__title">What do you want to build, explore, or contribute?</p>
+                  <p class="apply-template-q__hint">Be specific. A project, a question, an idea you keep returning to. This is the most important part.</p>
+                </div>
+              </div>
+              <div class="apply-template-q">
+                <span class="apply-template-num">04</span>
+                <div>
+                  <p class="apply-template-q__title">Portfolio or work sample <span class="form-optional">(optional)</span></p>
+                  <p class="apply-template-q__hint">A personal site, GitHub profile, published writing — anything that shows your work.</p>
+                </div>
               </div>
             </div>
-
-            <div class="form-field">
-              <label class="form-label" for="location">
-                City / Location <span class="form-required">*</span>
-              </label>
-              <input
-                class="form-input"
-                type="text"
-                id="location"
-                name="location"
-                required
-                placeholder="City, State / Country"
-              >
-            </div>
-
-            <div class="form-field">
-              <label class="form-label" for="background">
-                Tell us about yourself <span class="form-required">*</span>
-              </label>
-              <span class="form-hint">Who are you? What's your background — personally, professionally, intellectually? Don't summarize a résumé. Tell us something true.</span>
-              <textarea
-                class="form-textarea"
-                id="background"
-                name="background"
-                required
-                rows="5"
-                placeholder="Your background, experience, and what has shaped how you think..."
-              ></textarea>
-            </div>
-
-            <div class="form-field">
-              <label class="form-label" for="why">
-                Why SDIT? <span class="form-required">*</span>
-              </label>
-              <span class="form-hint">What draws you here? What are you looking for that you haven't found elsewhere?</span>
-              <textarea
-                class="form-textarea"
-                id="why"
-                name="why"
-                required
-                rows="5"
-                placeholder="What draws you to this institute and this moment..."
-              ></textarea>
-            </div>
-
-            <div class="form-field">
-              <label class="form-label" for="build">
-                What do you want to build, explore, or contribute? <span class="form-required">*</span>
-              </label>
-              <span class="form-hint">Be specific. A project, a question, an idea you keep returning to. This is the most important part of your application.</span>
-              <textarea
-                class="form-textarea"
-                id="build"
-                name="build"
-                required
-                rows="6"
-                placeholder="The thing you want to work on, the question you can't stop asking, or what you'd build if given the space..."
-              ></textarea>
-            </div>
-
-            <div class="form-field">
-              <label class="form-label" for="portfolio">
-                Portfolio or work sample <span class="form-optional">(optional)</span>
-              </label>
-              <span class="form-hint">A personal site, GitHub profile, published writing, or anything else that shows your work. Not required — substance matters more than presentation.</span>
-              <input
-                class="form-input"
-                type="url"
-                id="portfolio"
-                name="portfolio"
-                placeholder="https://..."
-              >
-            </div>
-
             <div class="form-submit">
-              <button type="submit" class="btn btn--gold">Submit Application →</button>
-              <p class="form-submit-note">We read every application personally. You'll hear from us within 2–3 weeks. No automated responses.</p>
+              <a href="mailto:brandon@sandiegotech.org?subject=SDIT Fellowship Application&body=1. Who are you?%0A%0A%0A%0A2. Why SDIT?%0A%0A%0A%0A3. What do you want to build, explore, or contribute?%0A%0A%0A%0A4. Portfolio or work sample (optional)%0A%0A" class="btn btn--gold">Open Email to Apply →</a>
+              <p class="form-submit-note">We read every application personally. You'll hear from us within 2–3 weeks.</p>
             </div>
-          </form>
+          </div>
         </div>
 
       </div>
@@ -346,48 +273,6 @@
   </footer>
 
   <script src="main.js"></script>
-  <script>
-    const applyForm = document.getElementById('applyForm');
-    if (applyForm) {
-      applyForm.addEventListener('submit', function (e) {
-        e.preventDefault();
-
-        const name       = document.getElementById('name').value.trim();
-        const email      = document.getElementById('email').value.trim();
-        const location   = document.getElementById('location').value.trim();
-        const background = document.getElementById('background').value.trim();
-        const why        = document.getElementById('why').value.trim();
-        const build      = document.getElementById('build').value.trim();
-        const portfolio  = document.getElementById('portfolio').value.trim();
-
-        const subject = 'SDIT Fellowship Application — ' + name;
-
-        const bodyLines = [
-          'Name: ' + name,
-          'Email: ' + email,
-          'Location: ' + location,
-          '',
-          'About Me:',
-          background,
-          '',
-          'Why SDIT:',
-          why,
-          '',
-          'What I Want to Build / Explore / Contribute:',
-          build,
-        ];
-        if (portfolio) {
-          bodyLines.push('', 'Portfolio / Work Sample:', portfolio);
-        }
-
-        const mailtoUrl = 'mailto:hello@sandiegotech.org'
-          + '?subject=' + encodeURIComponent(subject)
-          + '&body=' + encodeURIComponent(bodyLines.join('\n'));
-
-        window.location.href = mailtoUrl;
-      });
-    }
-  </script>
 
 </body>
 </html>

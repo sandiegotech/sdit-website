@@ -2141,6 +2141,72 @@ h1, h2, h3, h4 {
   padding: var(--s10);
 }
 
+/* Email template */
+.apply-email-template {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s8);
+}
+
+.apply-email-template__to {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  padding-bottom: var(--s6);
+  border-bottom: 1px solid var(--ink-10);
+}
+
+.apply-email-template__label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-40);
+}
+
+.apply-email-template__address {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--ink);
+  text-decoration: none;
+}
+.apply-email-template__address:hover { text-decoration: underline; }
+
+.apply-email-template__questions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s6);
+}
+
+.apply-template-q {
+  display: flex;
+  gap: var(--s4);
+  align-items: flex-start;
+}
+
+.apply-template-num {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--gold);
+  min-width: 1.8rem;
+  padding-top: 0.2rem;
+}
+
+.apply-template-q__title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0 0 var(--s1);
+}
+
+.apply-template-q__hint {
+  font-size: 0.85rem;
+  color: var(--ink-60);
+  margin: 0;
+  line-height: 1.6;
+}
+
 /* Form fields */
 .form-fields {
   display: flex;
