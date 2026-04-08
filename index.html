@@ -389,7 +389,7 @@
             <h4>Connect</h4>
             <a href="apply.html">Apply</a>
             <a href="support.html">Support</a>
-            <a href="mailto:hello@sandiegotech.org">Contact</a>
+            <a href="mailto:brandon@sandiegotech.org">Contact</a>
           </div>
         </div>
       </div>
@@ -407,27 +407,36 @@
   </footer>
 
   <script>
-    const map = L.map('communityMap', {
-      center: [32.8905, -117.2323],
-      zoom: 12,
-      scrollWheelZoom: false,
-      zoomControl: true,
-    });
+    (function () {
+      if (typeof L === 'undefined' || !document.getElementById('communityMap')) return;
 
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
-      subdomains: 'abcd',
-      maxZoom: 19,
-    }).addTo(map);
+      const map = L.map('communityMap', {
+        center: [32.8905, -117.2323],
+        zoom: 12,
+        scrollWheelZoom: false,
+        zoomControl: true,
+      });
 
-    const markerIcon = L.divIcon({
-      className: '',
-      html: '<div class="map-marker"></div>',
-      iconSize: [18, 18],
-      iconAnchor: [9, 9],
-    });
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        subdomains: 'abcd',
+        maxZoom: 19,
+        detectRetina: true,
+      }).addTo(map);
 
-    L.marker([32.8905, -117.2323], { icon: markerIcon }).addTo(map);
+      const markerIcon = L.divIcon({
+        className: '',
+        html: '<div class="map-marker"></div>',
+        iconSize: [18, 18],
+        iconAnchor: [9, 9],
+      });
+
+      L.marker([32.8905, -117.2323], { icon: markerIcon }).addTo(map);
+
+      // Recalculate map dimensions after layout settles
+      setTimeout(function () { map.invalidateSize(); }, 200);
+      window.addEventListener('resize', function () { map.invalidateSize(); });
+    }());
   </script>
   <script src="main.js"></script>
 </body>
